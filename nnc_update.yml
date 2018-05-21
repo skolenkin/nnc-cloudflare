@@ -1,0 +1,17 @@
+---
+- hosts: scaners
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars:
+    ansible_ssh_private_key_file: "/opt/key/nnc"
+    ansible_ssh_user: "root"
+  tasks:
+  - name: apt-get update
+    apt: update_cache=yes
+  - name: apt-get dist-upgrade -y
+    apt: upgrade=dist
+    register: ps
+  - name: apt-get clean
+    command: apt-get clean
+  - debug: var=ps

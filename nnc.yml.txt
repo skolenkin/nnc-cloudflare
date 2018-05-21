@@ -1,0 +1,4 @@
+#Vault password:
+---
+do_token: TOKEN
+nnc_user_password:

@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+filename="$1"
+
+echo [scaners] >> hosts
+
+cat $filename |grep -v localhost|grep changed=|grep -v failed=1|awk ' { print $1 }' | sed '/^\s*$/d'| sed "s/^/ansible_host=/g"| awk '{print NR,$0}'| sed '/^\s*$/d'| sed "s/^/scaner-/g" >> hosts
+

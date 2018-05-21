@@ -1,0 +1,20 @@
+---
+- hosts: scaners
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars:
+    ansible_ssh_private_key_file: "/opt/key/nnc"
+    ansible_ssh_user: "root"
+  tasks:
+  - name: Install tor&curl
+    apt: name=tor,curl state=present
+  - name: restart TOR
+    service: name=tor state=restarted
+  - name: wait tor to establish connection
+    pause: seconds=30 
+  - name: check tor connection
+    shell: "torify curl -s ifconfig.me"
+    register: ps
+  - debug: var=ps
+

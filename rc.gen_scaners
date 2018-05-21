@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+filename="$1"
+rtmp=rtmp
+#touch $result
+
+nd=`cat $filename |wc -l`
+echo We need $nd scaner instances
+
+echo "[" > $rtmp
+
+COUNT=0
+
+while read -r line
+do
+    COUNT=$(( $COUNT + 1 ))
+    name="$line"
+    echo $name>scaner-$COUNT
+    echo "'" >> $rtmp
+    echo scaner-$COUNT >> $rtmp
+    echo "'" >> $rtmp
+    echo "," >> $rtmp
+done < "$filename"
+
+echo "]" >> $rtmp
+
+cat $rtmp | awk 1 ORS='' | sed 's/,]$//' | sed 's/$/]/' > scaners.txt
+
+rm $rtmp
+
+echo Generated scaner list
+echo "`cat scaners.txt`"
+

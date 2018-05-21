@@ -1,0 +1,14 @@
+### run ###
+
+ansible-playbook --ask-vault-pass nnc_deploy.yml > nnc_deploy.txt
+
+# Generate hosts for deployment
+bash rc.nnc_deploy_gen_hosts nnc_deploy.txt
+
+ansible-playbook --ask-vault-pass -i hosts nnc_install_reqs.yml
+ansible-playbook -i hosts nnc_update.yml
+ansible-playbook -i hosts nnc_cp_run_scaners.yml 
+ansible-playbook -i hosts nnc_tor.yml
+ansible-playbook -i hosts nnc_cp_run_scaners_tor.yml
+
+ansible-playbook --ask-vault-pass nnc_remove.yml

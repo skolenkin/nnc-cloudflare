@@ -1,0 +1,58 @@
+
+PLAY [digitalocean] ****************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [ssh key check] ***************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [ssh key check at DO] *********************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [create scaners] **************************************************************************************************************************************************************************************
+changed: [localhost] => (item=scaner-1)
+changed: [localhost] => (item=scaner-2)
+changed: [localhost] => (item=scaner-3)
+
+TASK [Show IPs] ********************************************************************************************************************************************************************************************
+ok: [localhost] => (item=None) => {
+    "msg": "IP is 188.166.22.29"
+}
+ok: [localhost] => (item=None) => {
+    "msg": "IP is 188.166.125.172"
+}
+ok: [localhost] => (item=None) => {
+    "msg": "IP is 128.199.34.140"
+}
+
+TASK [inventory] *******************************************************************************************************************************************************************************************
+changed: [localhost] => (item={'_ansible_parsed': True, u'droplet': {u'status': u'active', u'kernel': None, u'volume_ids': [], u'locked': False, u'features': [], u'name': u'scaner-1', u'tags': [], u'image': {u'min_disk_size': 20, u'name': u'9.4 x64', u'created_at': u'2018-05-14T00:43:22Z', u'slug': u'debian-9-x64', u'regions': [u'nyc1', u'sfo1', u'nyc2', u'ams2', u'sgp1', u'lon1', u'nyc3', u'ams3', u'fra1', u'tor1', u'sfo2', u'blr1'], u'public': True, u'distribution': u'Debian', u'type': u'snapshot', u'id': 34320678, u'size_gigabytes': 0.66}, u'snapshot_ids': [], u'size_slug': u'1gb', u'id': 94090472, u'next_backup_window': None, u'vcpus': 1, u'backup_ids': [], u'memory': 1024, u'region': {u'available': True, u'features': [u'private_networking', u'backups', u'ipv6', u'metadata', u'install_agent', u'storage', u'image_transfer'], u'slug': u'ams3', u'name': u'Amsterdam 3', u'sizes': [u'512mb', u'1gb', u'2gb', u'4gb', u'8gb', u's-1vcpu-3gb', u'c-2', u'm-1vcpu-8gb', u's-1vcpu-1gb', u's-3vcpu-1gb', u's-1vcpu-2gb', u's-2vcpu-2gb', u's-2vcpu-4gb', u's-4vcpu-8gb', u's-6vcpu-16gb', u'16gb', u'c-1vcpu-2gb']}, u'created_at': u'2018-05-17T17:51:32Z', u'disk': 30, u'ip_address': u'188.166.22.29', u'networks': {u'v4': [{u'ip_address': u'188.166.22.29', u'netmask': u'255.255.192.0', u'type': u'public', u'gateway': u'188.166.0.1'}], u'v6': []}, u'size': {u'price_monthly': 10.0, u'available': True, u'transfer': 2.0, u'price_hourly': 0.01488, u'regions': [u'ams2', u'ams3', u'blr1', u'fra1', u'lon1', u'nyc1', u'nyc2', u'nyc3', u'sfo1', u'sfo2', u'sgp1', u'tor1'], u'vcpus': 1, u'memory': 1024, u'disk': 30, u'slug': u'1gb'}}, u'changed': True, '_ansible_no_log': False, 'item': u'scaner-1', '_ansible_item_result': True, 'failed': False, u'invocation': {u'module_args': {u'unique_name': True, u'virtio': True, u'region_id': u'ams3', u'name': u'scaner-1', u'size_id': u'1gb', u'ipv6': False, u'backups_enabled': False, u'user_data': None, u'ssh_pub_key': None, u'image_id': u'debian-9-x64', u'state': u'present', u'wait_timeout': 300, u'command': u'droplet', u'ssh_key_ids': [u'20645953'], u'api_token': u'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER', u'private_networking': False, u'id': None, u'wait': True}}, '_ansible_ignore_errors': None})
+changed: [localhost] => (item={'_ansible_parsed': True, u'droplet': {u'status': u'active', u'kernel': None, u'volume_ids': [], u'locked': False, u'features': [], u'name': u'scaner-2', u'tags': [], u'image': {u'min_disk_size': 20, u'name': u'9.4 x64', u'created_at': u'2018-05-14T00:43:22Z', u'slug': u'debian-9-x64', u'regions': [u'nyc1', u'sfo1', u'nyc2', u'ams2', u'sgp1', u'lon1', u'nyc3', u'ams3', u'fra1', u'tor1', u'sfo2', u'blr1'], u'public': True, u'distribution': u'Debian', u'type': u'snapshot', u'id': 34320678, u'size_gigabytes': 0.66}, u'snapshot_ids': [], u'size_slug': u'1gb', u'id': 94090557, u'next_backup_window': None, u'vcpus': 1, u'backup_ids': [], u'memory': 1024, u'region': {u'available': True, u'features': [u'private_networking', u'backups', u'ipv6', u'metadata', u'install_agent', u'storage', u'image_transfer'], u'slug': u'ams3', u'name': u'Amsterdam 3', u'sizes': [u'512mb', u'1gb', u'2gb', u'4gb', u'8gb', u's-1vcpu-3gb', u'c-2', u'm-1vcpu-8gb', u's-1vcpu-1gb', u's-3vcpu-1gb', u's-1vcpu-2gb', u's-2vcpu-2gb', u's-2vcpu-4gb', u's-4vcpu-8gb', u's-6vcpu-16gb', u'16gb', u'c-1vcpu-2gb']}, u'created_at': u'2018-05-17T17:52:17Z', u'disk': 30, u'ip_address': u'188.166.125.172', u'networks': {u'v4': [{u'ip_address': u'188.166.125.172', u'netmask': u'255.255.192.0', u'type': u'public', u'gateway': u'188.166.64.1'}], u'v6': []}, u'size': {u'price_monthly': 10.0, u'available': True, u'transfer': 2.0, u'price_hourly': 0.01488, u'regions': [u'ams2', u'ams3', u'blr1', u'fra1', u'lon1', u'nyc1', u'nyc2', u'nyc3', u'sfo1', u'sfo2', u'sgp1', u'tor1'], u'vcpus': 1, u'memory': 1024, u'disk': 30, u'slug': u'1gb'}}, u'changed': True, '_ansible_no_log': False, 'item': u'scaner-2', '_ansible_item_result': True, 'failed': False, u'invocation': {u'module_args': {u'unique_name': True, u'virtio': True, u'region_id': u'ams3', u'name': u'scaner-2', u'size_id': u'1gb', u'ipv6': False, u'backups_enabled': False, u'user_data': None, u'ssh_pub_key': None, u'image_id': u'debian-9-x64', u'state': u'present', u'wait_timeout': 300, u'command': u'droplet', u'ssh_key_ids': [u'20645953'], u'api_token': u'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER', u'private_networking': False, u'id': None, u'wait': True}}, '_ansible_ignore_errors': None})
+changed: [localhost] => (item={'_ansible_parsed': True, u'droplet': {u'status': u'active', u'kernel': None, u'volume_ids': [], u'locked': False, u'features': [], u'name': u'scaner-3', u'tags': [], u'image': {u'min_disk_size': 20, u'name': u'9.4 x64', u'created_at': u'2018-05-14T00:43:22Z', u'slug': u'debian-9-x64', u'regions': [u'nyc1', u'sfo1', u'nyc2', u'ams2', u'sgp1', u'lon1', u'nyc3', u'ams3', u'fra1', u'tor1', u'sfo2', u'blr1'], u'public': True, u'distribution': u'Debian', u'type': u'snapshot', u'id': 34320678, u'size_gigabytes': 0.66}, u'snapshot_ids': [], u'size_slug': u'1gb', u'id': 94090834, u'next_backup_window': None, u'vcpus': 1, u'backup_ids': [], u'memory': 1024, u'region': {u'available': True, u'features': [u'private_networking', u'backups', u'ipv6', u'metadata', u'install_agent', u'storage', u'image_transfer'], u'slug': u'ams3', u'name': u'Amsterdam 3', u'sizes': [u'512mb', u'1gb', u'2gb', u'4gb', u'8gb', u's-1vcpu-3gb', u'c-2', u'm-1vcpu-8gb', u's-1vcpu-1gb', u's-3vcpu-1gb', u's-1vcpu-2gb', u's-2vcpu-2gb', u's-2vcpu-4gb', u's-4vcpu-8gb', u's-6vcpu-16gb', u'16gb', u'c-1vcpu-2gb']}, u'created_at': u'2018-05-17T17:54:45Z', u'disk': 30, u'ip_address': u'128.199.34.140', u'networks': {u'v4': [{u'ip_address': u'128.199.34.140', u'netmask': u'255.255.224.0', u'type': u'public', u'gateway': u'128.199.32.1'}], u'v6': []}, u'size': {u'price_monthly': 10.0, u'available': True, u'transfer': 2.0, u'price_hourly': 0.01488, u'regions': [u'ams2', u'ams3', u'blr1', u'fra1', u'lon1', u'nyc1', u'nyc2', u'nyc3', u'sfo1', u'sfo2', u'sgp1', u'tor1'], u'vcpus': 1, u'memory': 1024, u'disk': 30, u'slug': u'1gb'}}, u'changed': True, '_ansible_no_log': False, 'item': u'scaner-3', '_ansible_item_result': True, 'failed': False, u'invocation': {u'module_args': {u'unique_name': True, u'virtio': True, u'region_id': u'ams3', u'name': u'scaner-3', u'size_id': u'1gb', u'ipv6': False, u'backups_enabled': False, u'user_data': None, u'ssh_pub_key': None, u'image_id': u'debian-9-x64', u'state': u'present', u'wait_timeout': 300, u'command': u'droplet', u'ssh_key_ids': [u'20645953'], u'api_token': u'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER', u'private_networking': False, u'id': None, u'wait': True}}, '_ansible_ignore_errors': None})
+
+PLAY [scaners] *********************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+ok: [188.166.125.172]
+ok: [188.166.22.29]
+fatal: [128.199.34.140]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 128.199.34.140 port 22: Connection refused\r\n", "unreachable": true}
+
+TASK [Wait for port 22 to become available.] ***************************************************************************************************************************************************************
+ok: [188.166.125.172 -> localhost]
+ok: [188.166.22.29 -> localhost]
+
+TASK [print inventory] *************************************************************************************************************************************************************************************
+ok: [188.166.22.29] => {
+    "inventory_hostname": "188.166.22.29"
+}
+ok: [188.166.125.172] => {
+    "inventory_hostname": "188.166.125.172"
+}
+
+PLAY RECAP *************************************************************************************************************************************************************************************************
+128.199.34.140             : ok=0    changed=0    unreachable=1    failed=0   
+188.166.125.172            : ok=3    changed=0    unreachable=0    failed=0   
+188.166.22.29              : ok=3    changed=0    unreachable=0    failed=0   
+localhost                  : ok=6    changed=2    unreachable=0    failed=0   
+

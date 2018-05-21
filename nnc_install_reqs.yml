@@ -1,0 +1,26 @@
+---
+- hosts: scaners
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars_files:
+  - ./nnc.yml
+  vars:
+    ansible_ssh_private_key_file: "/opt/key/nnc"
+    ansible_ssh_user: "root"
+  tasks:
+  - name: create nnc user
+    user:
+      name: "nnc"
+      password: "{{ nnc_user_password | password_hash('sha512') }}"
+      shell: "/bin/bash"
+      groups: root
+
+  - name: Install the packages
+    apt: name=git,python3,python3-pip state=present
+
+  - git: repo=https://github.com/m0rtem/CloudFail.git dest=/root/cloudfail
+
+  - name: install python reqs
+    shell: pip3 install -r /root/cloudfail/requirements.txt
+

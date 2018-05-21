@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+TOR=$1
+
+if [[ $TOR == "tor" ]]; then
+  PREFIX="-tor"	
+else
+  PREFIX=""
+fi 
+
+COUNT=1
+
+COUNTG="`ls -lah scaner*$PREFIX.res|wc -l`"
+echo $COUNTG
+
+while [ $COUNT -le $COUNTG ]
+do
+#    echo $COUNT
+    mv scaner-$COUNT$PREFIX.res res_$PREFIX`cat scaner-$COUNT`
+    COUNT=$(( $COUNT + 1 ))
+done
+

@@ -1,0 +1,26 @@
+---
+- hosts: digitalocean
+  vars_files:
+  - ./nnc.yml
+
+  vars:
+#    do_token: "{{ lookup('file', 'nnc.txt') }}"
+    scaners: "{{ lookup('file', 'scaners.txt') }}"
+
+  tasks:
+
+  - name: ssh key check
+    user: >
+      name={{ ansible_user_id }}
+      generate_ssh_key=yes
+      ssh_key_file=/root/nnc
+
+  - name: ssh key check at DO
+    digital_ocean: >
+      state=absent
+      command=ssh
+      name=nnc
+      ssh_pub_key="{{ lookup('file', '/root/nnc.pub') }}"
+      api_token={{ do_token }}
+    register: nnc 
+

@@ -1,0 +1,35 @@
+---
+- hosts: scaners
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars:
+    ansible_ssh_private_key_file: "/opt/key/nnc"
+    ansible_ssh_user: "root"
+  tasks:
+#  - name: print 
+#    debug: var=inventory_hostname
+#    debug: var=hostvars[inventory_hostname]
+
+  - name: delete old res files
+    local_action: "shell rm -f {{ inventory_hostname }}-tor.res"
+
+  - name: copy domain files
+    copy: src={{ inventory_hostname }} dest=/root/{{ inventory_hostname }}
+
+  - name: run scan
+    shell: nohup python3 cloudfail.py --target `cat /root/{{ inventory_hostname }}` --tor >/root/{{ inventory_hostname }}.res 2>&1 &
+    args:
+      chdir: "/root/cloudfail"
+
+  - name: wait until scan complete
+    wait_for: path=/root/{{ inventory_hostname }}.res search_regex="Scanning finished..." timeout=1800
+ 
+  - name: copy result files
+    fetch: src=/root/{{ inventory_hostname }}.res dest=./{{ inventory_hostname }}-tor.res flat=yes 
+
+  - name: delete result files from hosts
+    shell: rm /root/{{ inventory_hostname }}*
+
+  - name: rename result files by domain
+    local_action: shell ./rc.rename_scan_results tor

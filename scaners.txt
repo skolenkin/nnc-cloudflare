@@ -1,0 +1,1 @@
+['scaner-1','scaner-2','scaner-3']

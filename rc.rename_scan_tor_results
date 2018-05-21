@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+COUNT=1
+
+COUNTG="`ls -lah scaner*-tor.res|wc -l`"
+#echo $COUNTG
+
+while [ $COUNT -le $COUNTG ]
+do
+#    echo $COUNT
+    mv scaner-$COUNT-tor.res res_tor_`cat scaner-$COUNT`
+    COUNT=$(( $COUNT + 1 ))
+done
+
